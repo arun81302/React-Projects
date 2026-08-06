@@ -1,0 +1,154 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+html,body{
+    height: 100%;
+    width: 100%;
+}
+
+
+.container{
+    /* border: 1px solid black; */
+    box-shadow: 0px 0px 10px 1px  grey;
+    width: 60%;
+    /* margin:  em auto; */
+    /* margin-bottom: 1em; */
+    /* margin-top: 1em;
+    margin-bottom: 0 auto; */
+    margin: 0 auto;
+    max-width: 800px;
+
+
+    /* width: 70%; */
+}
+
+/* ---------header */
+
+.header{
+    /* border: 1px solid black; */
+    background-color:#F55A5A;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+}
+.header-inner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: white;
+}
+.header-inner img{
+    width: 50px;
+    height: 50px;
+}
+.header-inner p{
+    font-size: 1.5rem;
+    font-weight: bold;
+
+}
+
+
+/* ---------article */
+
+.article-container{
+    width: 90%;
+    height: 250px;
+    /* border: 1px solid black; */
+    
+    display: flex;
+    margin: 2em auto;
+    
+}
+.inner-text-content{
+    /* border: 1px solid black; */
+    width: 90%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.text-content{
+    display: flex;
+    /* border: 1px solid black; */
+    justify-content: center;
+    align-items: center;
+}
+.article-container img{
+    width: 30%;
+    border-radius: 10px;
+    object-fit: cover;
+    /* height: 168px; */
+}
+.location{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.location img{
+    width: 14px;
+    height: px;
+}
+.location p{
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+.location a{
+    color: #918E9B;
+}
+.title{
+    font-size: 2rem;
+    font-weight: bold;
+}
+.date{
+    font-weight: 600;
+}
+
+
+@media (max-width:440px){
+    .container{
+        width: 95%;
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+    .header{
+        height: 50px;
+    }
+    .article-container{
+        width: 100%;
+        height: 210px;
+    }
+    .header-inner img{
+    width: 25px;
+    height: 25px;
+    }
+    .article-container img{
+        width: 40%;
+    }
+    .location{
+        gap: 5px;
+    }
+    .location p{
+        letter-spacing: 0;
+        /* font-weight: 40; */
+    }
+    .location img{
+        width: 10px;
+    }
+    .location a{
+        font-size: 0.5rem;
+    }
+    .title{
+        font-size: 1.1em;
+    }
+    .date{
+        font-size: 0.6rem;
+    }
+    .text{
+        font-size: 0.8rem;
+    }
+}
