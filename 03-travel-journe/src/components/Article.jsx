@@ -8,7 +8,7 @@ export default function Article(prop) {
             <div className="text-content">
                 <div className="inner-text-content">
                     <div className="location">
-                        <img src="../../src/assets/marker.png" alt="marker icon" />
+                        <img src="marker.png" alt="marker icon" />
                         <p>{country}</p>
                         <a href={link}>View on Google Maps</a>
                     </div>
