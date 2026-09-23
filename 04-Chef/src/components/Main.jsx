@@ -48,7 +48,7 @@ export default function Main(){
             </div>
             
             {ingredientArr.length>3?
-            <div className="max-w-190 w- mx-auto rounded-md mt-4 p-4 w-123 flex justify-between items-center bg-[#cecdc8]">
+            <div className="max-w-190 w- mx-auto rounded-md mt-4 p-4  flex justify-between items-center bg-[#cecdc8]">
                 <div className="flex flex-col">
                     <h2 className="text-2xl font-semibold">Ready for a recipe?</h2>
                     <p className="text-taupe-600 font-light mt-3">Generate a racipe from your list of ingredients</p>
