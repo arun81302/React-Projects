@@ -1,19 +1,18 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-const PHONE_REGEX =
-  /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/;
+const PHONE_REGEX = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/;
 
 const initialFormData = {
-  fullName: '',
-  email: '',
-  phone: '',
-  address: '',
-  jobTitle: '',
-  company: '',
-  yearsExperience: '0-1',
-  skills: '',
+  fullName: "",
+  email: "",
+  phone: "",
+  address: "",
+  jobTitle: "",
+  company: "",
+  yearsExperience: "0-1",
+  skills: "",
 };
 
 const initialFormErrors = {
@@ -25,17 +24,12 @@ const initialFormErrors = {
 };
 
 const tabs = [
-  { number: '01', title: 'Personal Info' },
-  { number: '02', title: 'Experience' },
-  { number: '03', title: 'Review & Submit' },
+  { number: "01", title: "Personal Info" },
+  { number: "02", title: "Experience" },
+  { number: "03", title: "Review & Submit" },
 ];
 
-function Tabs({
-  activeTabIndex = 0,
-  onPrevious,
-  onNext,
-  onTabClick,
-}) {
+function Tabs({ activeTabIndex = 0, onPrevious, onNext, onTabClick }) {
   const [formData, setFormData] = useState(initialFormData);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [agreeTerms, setAgreeTerms] = useState(false);
@@ -44,39 +38,39 @@ function Tabs({
   const isFirstTab = activeTabIndex === 0;
   const isLastTab = activeTabIndex === 2;
 
-  // ----------------------------------
+  
   // Field validation
-  // ----------------------------------
+  
 
   const validateField = (name, value) => {
     switch (name) {
-      case 'fullName':
+      case "fullName":
         if (!value || value.trim().length <= 2) {
-          return 'Please enter a valid Name.';
+          return "Please enter a valid Name.";
         }
         return null;
 
-      case 'email':
+      case "email":
         if (!value || !EMAIL_REGEX.test(value)) {
-          return 'Please enter a valid email address.';
+          return "Please enter a valid email address.";
         }
         return null;
 
-      case 'phone':
+      case "phone":
         if (value && !PHONE_REGEX.test(value)) {
-          return 'Please enter a valid phone number.';
+          return "Please enter a valid phone number.";
         }
         return null;
 
-      case 'address':
+      case "address":
         if (!value || value.trim().length <= 4) {
-          return 'Please provide your full address.';
+          return "Please provide your full address.";
         }
         return null;
 
-      case 'agreeTerms':
+      case "agreeTerms":
         if (!value) {
-          return 'You must agree to the terms and conditions.';
+          return "You must agree to the terms and conditions.";
         }
         return null;
 
@@ -85,10 +79,8 @@ function Tabs({
     }
   };
 
-  // ----------------------------------
   // Update input values
-  // ----------------------------------
-
+ 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
@@ -106,9 +98,9 @@ function Tabs({
     }
   };
 
-  // ----------------------------------
+  
   // Checkbox handling
-  // ----------------------------------
+  
 
   const handleAgreeTermsChange = (e) => {
     const checked = e.target.checked;
@@ -117,22 +109,18 @@ function Tabs({
 
     setFormErrors((prevErrors) => ({
       ...prevErrors,
-      agreeTerms: checked
-        ? null
-        : prevErrors.agreeTerms,
+      agreeTerms: checked ? null : prevErrors.agreeTerms,
     }));
   };
 
-  // ----------------------------------
+  
   // Validate fields on blur
-  // ----------------------------------
+  
 
   const handleBlur = (e) => {
     const { name, value } = e.target;
 
-    if (
-      ['fullName', 'email', 'phone', 'address'].includes(name)
-    ) {
+    if (["fullName", "email", "phone", "address"].includes(name)) {
       setFormErrors((prevErrors) => ({
         ...prevErrors,
         [name]: validateField(name, value),
@@ -140,9 +128,16 @@ function Tabs({
     }
   };
 
-  // ----------------------------------
+  
   // Validate the Personal Info tab
-  // ----------------------------------
+  
+
+
+
+
+
+
+
 
   const validateCurrentTabForNext = () => {
     if (activeTabIndex !== 0) {
@@ -150,10 +145,10 @@ function Tabs({
     }
 
     const errors = {
-      fullName: validateField('fullName', formData.fullName),
-      email: validateField('email', formData.email),
-      phone: validateField('phone', formData.phone),
-      address: validateField('address', formData.address),
+      fullName: validateField("fullName", formData.fullName),
+      email: validateField("email", formData.email),
+      phone: validateField("phone", formData.phone),
+      address: validateField("address", formData.address),
     };
 
     setFormErrors((prevErrors) => ({
@@ -164,9 +159,15 @@ function Tabs({
     return Object.values(errors).every((error) => error === null);
   };
 
-  // ----------------------------------
+
+
+
+
+
+
+  
   // Next button
-  // ----------------------------------
+ 
 
   const handleNextClick = () => {
     if (!validateCurrentTabForNext()) {
@@ -176,9 +177,9 @@ function Tabs({
     onNext();
   };
 
-  // ----------------------------------
+  
   // Direct navigation through headers
-  // ----------------------------------
+  
 
   const handleTabHeaderClick = (targetIndex) => {
     if (targetIndex === activeTabIndex) {
@@ -196,17 +197,17 @@ function Tabs({
     onTabClick(targetIndex);
   };
 
-  // ----------------------------------
+  
   // Validate all fields before submit
-  // ----------------------------------
+
 
   const validateAllFieldsForSubmit = () => {
     const errors = {
-      fullName: validateField('fullName', formData.fullName),
-      email: validateField('email', formData.email),
-      phone: validateField('phone', formData.phone),
-      address: validateField('address', formData.address),
-      agreeTerms: validateField('agreeTerms', agreeTerms),
+      fullName: validateField("fullName", formData.fullName),
+      email: validateField("email", formData.email),
+      phone: validateField("phone", formData.phone),
+      address: validateField("address", formData.address),
+      agreeTerms: validateField("agreeTerms", agreeTerms),
     };
 
     setFormErrors((prevErrors) => ({
@@ -217,9 +218,9 @@ function Tabs({
     return Object.values(errors).every((error) => error === null);
   };
 
-  // ----------------------------------
+
   // Submit application
-  // ----------------------------------
+  
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -230,31 +231,30 @@ function Tabs({
       return;
     }
 
-    console.log('Form Data Submitted:', formData);
-    console.log('Agreed to terms:', agreeTerms);
+    console.log("Form Data Submitted:", formData);
+    console.log("Agreed to terms:", agreeTerms);
 
     setIsSubmitted(true);
   };
 
-  // ----------------------------------
+  
   // Reusable form field styles
-  // ----------------------------------
+  
 
   const inputClass = (fieldName) =>
     `mt-2 block w-full rounded-xl border bg-white px-4 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:ring-4 ${
       formErrors[fieldName]
-        ? 'border-red-400 focus:border-red-500 focus:ring-red-100'
-        : 'border-slate-200 focus:border-indigo-500 focus:ring-indigo-100'
+        ? "border-red-400 focus:border-red-500 focus:ring-red-100"
+        : "border-slate-200 focus:border-indigo-500 focus:ring-indigo-100"
     }`;
 
-  const labelClass =
-    'block text-sm font-semibold text-slate-700';
+  const labelClass = "block text-sm font-semibold text-slate-700";
 
-  const errorClass = 'mt-2 text-sm text-red-600';
+  const errorClass = "mt-2 text-sm text-red-600";
 
-  // ----------------------------------
+  
   // Success screen
-  // ----------------------------------
+
 
   if (isSubmitted) {
     return (
@@ -267,21 +267,18 @@ function Tabs({
           Application Submitted Successfully!
         </h2>
 
-        <p className="mt-3 text-slate-600">
-          Thank you, {formData.fullName}.
-        </p>
+        <p className="mt-3 text-slate-600">Thank you, {formData.fullName}.</p>
 
         <p className="mt-2 break-words text-sm text-slate-500">
-          We will contact you via {formData.email} if you are
-          shortlisted.
+          We will contact you via {formData.email} if you are shortlisted.
         </p>
       </section>
     );
   }
 
-  // ----------------------------------
+  
   // Main form
-  // ----------------------------------
+  
 
   return (
     <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl shadow-slate-200/60">
@@ -297,29 +294,29 @@ function Tabs({
                 key={tab.number}
                 type="button"
                 onClick={() => handleTabHeaderClick(index)}
-                aria-current={isActive ? 'step' : undefined}
+                aria-current={isActive ? "step" : undefined}
                 className={`flex min-w-0 items-center gap-2 rounded-xl px-2 py-3 text-left transition sm:gap-3 sm:px-4 ${
                   isActive
-                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-200'
-                    : 'bg-white text-slate-600 hover:bg-indigo-50'
+                    ? "bg-indigo-600 text-white shadow-md shadow-indigo-200"
+                    : "bg-white text-slate-600 hover:bg-indigo-50"
                 }`}
               >
                 <span
                   className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold sm:h-9 sm:w-9 sm:text-sm ${
                     isActive
-                      ? 'bg-white text-indigo-600'
+                      ? "bg-white text-indigo-600"
                       : isComplete
-                        ? 'bg-emerald-100 text-emerald-700'
-                        : 'bg-slate-100 text-slate-600'
+                        ? "bg-emerald-100 text-emerald-700"
+                        : "bg-slate-100 text-slate-600"
                   }`}
                 >
-                  {isComplete ? '✓' : tab.number}
+                  {isComplete ? "✓" : tab.number}
                 </span>
 
                 <span className="min-w-0">
                   <span
                     className={`hidden text-[10px] font-semibold uppercase tracking-wider sm:block ${
-                      isActive ? 'text-indigo-100' : 'text-slate-400'
+                      isActive ? "text-indigo-100" : "text-slate-400"
                     }`}
                   >
                     Step {index + 1}
@@ -350,13 +347,13 @@ function Tabs({
               </h2>
 
               <p className="mt-2 text-sm leading-6 text-slate-500">
-                Let's start with your basic details so we can get
-                in touch with you.
+                Let's start with your basic details so we can get in touch with
+                you.
               </p>
 
               <p className="mt-3 text-xs text-slate-500">
-                Fields marked with <span className="text-red-500">*</span>{' '}
-                are required.
+                Fields marked with <span className="text-red-500">*</span> are
+                required.
               </p>
             </div>
 
@@ -378,9 +375,9 @@ function Tabs({
                   onBlur={handleBlur}
                   aria-invalid={Boolean(formErrors.fullName)}
                   aria-describedby={
-                    formErrors.fullName ? 'fullName-error' : undefined
+                    formErrors.fullName ? "fullName-error" : undefined
                   }
-                  className={inputClass('fullName')}
+                  className={inputClass("fullName")}
                 />
 
                 {formErrors.fullName && (
@@ -407,9 +404,9 @@ function Tabs({
                   onBlur={handleBlur}
                   aria-invalid={Boolean(formErrors.email)}
                   aria-describedby={
-                    formErrors.email ? 'email-error' : undefined
+                    formErrors.email ? "email-error" : undefined
                   }
-                  className={inputClass('email')}
+                  className={inputClass("email")}
                 />
 
                 {formErrors.email && (
@@ -422,10 +419,8 @@ function Tabs({
               {/* Phone */}
               <div>
                 <label htmlFor="phone" className={labelClass}>
-                  Phone Number{' '}
-                  <span className="font-normal text-slate-400">
-                    (Optional)
-                  </span>
+                  Phone Number{" "}
+                  <span className="font-normal text-slate-400">(Optional)</span>
                 </label>
 
                 <input
@@ -439,9 +434,9 @@ function Tabs({
                   onBlur={handleBlur}
                   aria-invalid={Boolean(formErrors.phone)}
                   aria-describedby={
-                    formErrors.phone ? 'phone-error' : undefined
+                    formErrors.phone ? "phone-error" : undefined
                   }
-                  className={inputClass('phone')}
+                  className={inputClass("phone")}
                 />
 
                 {formErrors.phone && (
@@ -468,9 +463,9 @@ function Tabs({
                   onBlur={handleBlur}
                   aria-invalid={Boolean(formErrors.address)}
                   aria-describedby={
-                    formErrors.address ? 'address-error' : undefined
+                    formErrors.address ? "address-error" : undefined
                   }
-                  className={`${inputClass('address')} resize-y`}
+                  className={`${inputClass("address")} resize-y`}
                 />
 
                 {formErrors.address && (
@@ -496,8 +491,8 @@ function Tabs({
               </h2>
 
               <p className="mt-2 text-sm leading-6 text-slate-500">
-                Share your professional background and the skills
-                you would bring to the role. All fields are optional.
+                Share your professional background and the skills you would
+                bring to the role. All fields are optional.
               </p>
             </div>
 
@@ -515,7 +510,7 @@ function Tabs({
                   placeholder="e.g. Frontend Developer"
                   value={formData.jobTitle}
                   onChange={handleInputChange}
-                  className={inputClass('jobTitle')}
+                  className={inputClass("jobTitle")}
                 />
               </div>
 
@@ -532,7 +527,7 @@ function Tabs({
                   placeholder="Enter company name"
                   value={formData.company}
                   onChange={handleInputChange}
-                  className={inputClass('company')}
+                  className={inputClass("company")}
                 />
               </div>
 
@@ -547,7 +542,7 @@ function Tabs({
                   name="yearsExperience"
                   value={formData.yearsExperience}
                   onChange={handleInputChange}
-                  className={inputClass('yearsExperience')}
+                  className={inputClass("yearsExperience")}
                 >
                   <option value="0-1">0 - 1 Year</option>
                   <option value="1-3">1 - 3 Years</option>
@@ -570,7 +565,7 @@ function Tabs({
                   placeholder="e.g. React, JavaScript, Node.js, SQL"
                   value={formData.skills}
                   onChange={handleInputChange}
-                  className={`${inputClass('skills')} resize-y`}
+                  className={`${inputClass("skills")} resize-y`}
                 />
 
                 <p className="mt-2 text-xs text-slate-400">
@@ -594,8 +589,8 @@ function Tabs({
               </h2>
 
               <p className="mt-2 text-sm leading-6 text-slate-500">
-                Review the information below and confirm that it is
-                accurate before submitting.
+                Review the information below and confirm that it is accurate
+                before submitting.
               </p>
             </div>
 
@@ -616,25 +611,13 @@ function Tabs({
               </div>
 
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                <ReviewItem
-                  label="Full Name"
-                  value={formData.fullName}
-                />
+                <ReviewItem label="Full Name" value={formData.fullName} />
 
-                <ReviewItem
-                  label="Email Address"
-                  value={formData.email}
-                />
+                <ReviewItem label="Email Address" value={formData.email} />
 
-                <ReviewItem
-                  label="Phone Number"
-                  value={formData.phone}
-                />
+                <ReviewItem label="Phone Number" value={formData.phone} />
 
-                <ReviewItem
-                  label="Address"
-                  value={formData.address}
-                />
+                <ReviewItem label="Address" value={formData.address} />
               </div>
             </div>
 
@@ -655,25 +638,16 @@ function Tabs({
               </div>
 
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                <ReviewItem
-                  label="Job Title"
-                  value={formData.jobTitle}
-                />
+                <ReviewItem label="Job Title" value={formData.jobTitle} />
 
-                <ReviewItem
-                  label="Company"
-                  value={formData.company}
-                />
+                <ReviewItem label="Company" value={formData.company} />
 
                 <ReviewItem
                   label="Years of Experience"
                   value={formData.yearsExperience}
                 />
 
-                <ReviewItem
-                  label="Key Skills"
-                  value={formData.skills}
-                />
+                <ReviewItem label="Key Skills" value={formData.skills} />
               </div>
             </div>
 
@@ -696,13 +670,13 @@ function Tabs({
                   className="mt-1 h-4 w-4 shrink-0 cursor-pointer accent-indigo-600"
                   aria-invalid={Boolean(formErrors.agreeTerms)}
                   aria-describedby={
-                    formErrors.agreeTerms ? 'terms-error' : undefined
+                    formErrors.agreeTerms ? "terms-error" : undefined
                   }
                 />
 
                 <span className="text-sm leading-6 text-slate-600">
-                  I confirm that the information provided is accurate
-                  and I agree to the company's terms and conditions.
+                  I confirm that the information provided is accurate and I
+                  agree to the company's terms and conditions.
                 </span>
               </label>
 
